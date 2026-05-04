@@ -2,12 +2,14 @@
   "version": 2,
   "functions": {
     "server.js": {
-      "runtime": "vercel-node@latest",
+      "runtime": "@vercel/node",
       "includeFiles": "frames/**"
     }
   },
   "rewrites": [
-    { "source": "/api/(.*)", "destination": "/server.js" },
-    { "source": "/(.*)", "destination": "/server.js" }
+    {
+      "source": "/(.*)",
+      "destination": "/server.js"
+    }
   ]
 }
