@@ -15,12 +15,14 @@
     "express": "^4.22.1",
     "path": "^0.12.7",
     "reach": "^1.0.1",
-    "react": "^19.2.5",
-    "sharp": "^0.33.5"
+    "react": "^19.2.5"
   },
   "engines": {
     "node": ">=18.0.0"
   },
   "private": true,
-  "license": "MIT"
+  "license": "MIT",
+  "optionalDependencies": {
+    "sharp": "^0.33.5"
+  }
 }
