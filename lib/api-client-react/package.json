@@ -10,7 +10,7 @@
     "express": "^4.18.2",
     "sharp": "^0.33.0",
     "cors": "^2.8.5",
-    "@tanstack/react-query": "catalog:"
+    "@tanstack/react-query": "^5.0.0"
   },
   "devDependencies": {
     "@types/node": "^18.0.0",
