@@ -1,18 +1,24 @@
 {
-  "name": "@workspace/api-client-react",
-  "version": "0.0.0",
+  "name": "mothersdaycard1",
+  "version": "1.0.0",
   "private": true,
-  "type": "module",
-  "exports": {
-    ".": "./src/index.ts"
-  },
+  "main": "server.js",
   "engines": {
-  "node": "18.x"
+    "node": "18.x"
   },
   "dependencies": {
+    "express": "^4.18.2",
+    "sharp": "^0.33.0",
+    "cors": "^2.8.5",
     "@tanstack/react-query": "catalog:"
   },
-  "peerDependencies": {
-    "react": ">=18"
+  "devDependencies": {
+    "@types/node": "^18.0.0",
+    "typescript": "^5.0.0"
+  },
+  "pnpm": {
+    "overrides": {
+      "sharp": "^0.33.0"
+    }
   }
 }
