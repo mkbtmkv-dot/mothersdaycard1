@@ -1,16 +1,26 @@
 {
-  "name": "workspace",
-  "version": "0.0.0",
-  "license": "MIT",
+  "name": "aaiji-heritage-card-bot",
+  "version": "1.0.0",
+  "description": "Mother's Day Card Generator with Sharp and Express",
+  "main": "server.js",
   "scripts": {
-    "preinstall": "sh -c 'rm -f package-lock.json yarn.lock; case \"$npm_config_user_agent\" in pnpm/*) ;; *) echo \"Use pnpm instead\" >&2; exit 1 ;; esac'",
-    "build": "pnpm run typecheck && pnpm -r --if-present run build",
-    "typecheck:libs": "tsc --build",
-    "typecheck": "pnpm run typecheck:libs && pnpm -r --filter \"./artifacts/**\" --filter \"./scripts\" --if-present run typecheck"
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "build": "echo 'No build step needed for this serverless setup'"
+  },
+  "dependencies": {
+    "@tanstack/react-query": "^5.100.9",
+    "cors": "^2.8.6",
+    "dotenv": "^16.4.5",
+    "express": "^4.22.1",
+    "path": "^0.12.7",
+    "reach": "^1.0.1",
+    "react": "^19.2.5",
+    "sharp": "^0.33.5"
+  },
+  "engines": {
+    "node": ">=18.0.0"
   },
   "private": true,
-  "devDependencies": {
-    "typescript": "~5.9.2",
-    "prettier": "^3.8.1"
-  }
+  "license": "MIT"
 }

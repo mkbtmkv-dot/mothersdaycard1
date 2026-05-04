@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "framework": "express",
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "server.js"
+    }
+  ]
+}
