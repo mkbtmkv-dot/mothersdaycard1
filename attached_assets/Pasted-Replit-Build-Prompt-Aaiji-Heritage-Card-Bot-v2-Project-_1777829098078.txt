@@ -1,0 +1,52 @@
+Replit Build Prompt: "Aaiji Heritage" Card Bot v2
+Project Goal:
+Build a full-stack Mother's Day card generator using Node.js (Express) for the backend and React for the frontend. The core feature is a "Smart Bot" that handles image processing via the Sharp library so users don't have to crop their own photos.
+
+Tech Stack:
+
+Backend: Node.js, Express, Sharp (image processing), Multer (file uploads).
+
+Frontend: React (Vite), Tailwind CSS.
+
+Core Backend Logic (The "Bot"):
+
+Image Enhancement: Every uploaded photo must be processed with .modulate({ saturation: 1.15, brightness: 1.05 }) to match a vibrant Jodhpur aesthetic.
+
+Smart Cropping: Use sharp.strategy.attention for all frames to automatically detect and center faces.
+
+Frame 5 (Dual-Analysis): This frame has two slots. The bot must process the single uploaded photo twice:
+
+Slot A: Use sharp.strategy.attention (face-focused).
+
+Slot B: Use sharp.strategy.entropy (focuses on high-contrast/detailed areas) to ensure the two polaroids look unique.
+
+Transparent Typography: Do not use standard text boxes. Create a 1080x1920 transparent SVG buffer with the mother’s name at y=1780, text-anchor="middle", and fill="#4A3728". Composite this as the top-most layer.
+
+The Coordinate Map (Canvas Size: 1080x1920):
+Implement a configuration object for the 5 Frame Templates:
+
+Frame 1: Size 680x840 | Position: Top 680, Left 200 | Rotation: 0°
+
+Frame 2: Size 710x950 | Position: Top 480, Left 195 | Rotation: 0°
+
+Frame 3: Size 260x360 | Position: Top 1180, Left 660 | Rotation: 15°
+
+Frame 4: Size 410x540 | Position: Top 420, Left 345 | Rotation: -8°
+
+Frame 5 (Dual Slot):
+
+Slot A: Size 380x520 | Position: Top 920, Left 150 | Rotation: -10°
+
+Slot B: Size 380x520 | Position: Top 940, Left 560 | Rotation: 8°
+
+UI Requirements:
+
+A clean "Heritage" themed UI.
+
+An upload zone for one high-res photo.
+
+A text input for "Mother's Name."
+
+A selection grid for the 5 Frame Templates.
+
+A "Generate Card" button that triggers the Sharp processing and returns the final composite image for download.

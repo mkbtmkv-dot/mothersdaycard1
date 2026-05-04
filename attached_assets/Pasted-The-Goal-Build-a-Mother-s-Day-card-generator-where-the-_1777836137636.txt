@@ -1,0 +1,41 @@
+The Goal: Build a Mother's Day card generator where the backend "Bot" handles all cropping, rotation, and layering automatically. The final output must be 1080x1920.
+
+1. The "Bot" Processing Logic (Sharp/Node.js):
+Every uploaded photo must pass through this exact Strict Buffer pipeline before being placed on the template:
+
+Fix Orientation: Use .rotate() first to read EXIF data (fixes tilted phone uploads).
+
+Universal Scaling: Use .resize(width, height, { fit: 'cover', position: 'attention' }). This ensures any image size or aspect ratio fills the slot perfectly with no stretching or gaps.
+
+Visual Polish: Apply .modulate({ saturation: 1.15, brightness: 1.05 }).
+
+Slot Rotation: If a slot is tilted, the photo buffer must be rotated by that exact degree before it is layered onto the template.
+
+2. The Assembly Order (Crucial for JPEGs):
+Since the templates (image_1.jpg to image_5.jpg) are JPEGs, do not attempt to place photos "behind" them. Use this order:
+
+Base: The Template JPEG.
+
+Top: The processed and tilted User Photo(s).
+
+Overlay: The transparent SVG for the mother’s name (at y=1780, text-anchor="middle", fill="#4A3728").
+
+3. The Aaiji Heritage Coordinate Map (1080x1920 Canvas):
+Use these exact dimensions and coordinates for the 5 templates:
+
+Frame 1 (Floral): Size 540x720 | Top: 650, Left: 270 | Rotation: 0°
+
+Frame 2 (Scrapbook): Size 560x780 | Top: 440, Left: 260 | Rotation: 0°
+
+Frame 3 (Mamma Card): Size 280x380 | Top: 1185, Left: 640 | Rotation: 18°
+
+Frame 4 (Rose): Size 420x560 | Top: 430, Left: 330 | Rotation: -12°
+
+Frame 5 (Dual Polaroid):
+
+Slot A (Left - Attention Crop): Size 360x490 | Top: 930, Left: 160 | Rotation: -10°
+
+Slot B (Right - Entropy Crop): Size 360x490 | Top: 950, Left: 555 | Rotation: 10°
+
+4. Code Implementation Guardrail:
+"Do not use CSS for rotation or scaling. All image manipulation must happen in the sharp pipeline on the backend. If the photo is not showing up, ensure you are using await on the .composite() function and returning the final buffer correctly to the frontend."

@@ -1,0 +1,81 @@
+openapi: 3.1.0
+info:
+  # Do not change the title, if the title changes, the import paths will be broken
+  title: Api
+  version: 0.1.0
+  description: API specification
+servers:
+  - url: /api
+    description: Base API path
+tags:
+  - name: health
+    description: Health operations
+  - name: cards
+    description: Card generation operations
+paths:
+  /healthz:
+    get:
+      operationId: healthCheck
+      tags: [health]
+      summary: Health check
+      description: Returns server health status
+      responses:
+        "200":
+          description: Healthy
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HealthStatus"
+  /cards/frames:
+    get:
+      operationId: listFrames
+      tags: [cards]
+      summary: List available frame templates
+      description: Returns metadata about all available card frame templates
+      responses:
+        "200":
+          description: List of frame templates
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/FrameTemplate"
+components:
+  schemas:
+    HealthStatus:
+      type: object
+      properties:
+        status:
+          type: string
+      required:
+        - status
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+        message:
+          type: string
+      required:
+        - error
+    FrameTemplate:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        previewImage:
+          type: string
+          description: URL to the frame preview image
+        dualSlot:
+          type: boolean
+          description: Whether this frame has two photo slots
+      required:
+        - id
+        - name
+        - description
+        - dualSlot

@@ -1,0 +1,31 @@
+kind = "web"
+previewPath = "/"
+title = "Aaiji Heritage Card Generator"
+version = "1.0.0"
+id = "artifacts/aaiji-heritage"
+router = "path"
+
+[[integratedSkills]]
+name = "react-vite"
+version = "1.0.0"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 19008
+
+[services.development]
+run = "pnpm --filter @workspace/aaiji-heritage run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/aaiji-heritage", "run", "build" ]
+publicDir = "artifacts/aaiji-heritage/dist/public"
+serve = "static"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "19008"
+BASE_PATH = "/"
