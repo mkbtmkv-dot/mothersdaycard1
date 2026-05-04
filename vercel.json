@@ -1,12 +1,18 @@
 {
   "version": 2,
+  "functions": {
+    "server.js": {
+      "runtime": "@vercel/node",
+      "includeFiles": "frames/**"
+    }
+  },
   "rewrites": [
     {
-      "source": "/api/:path*",
+      "source": "/api/(.*)",
       "destination": "/server.js"
     },
     {
-      "source": "/",
+      "source": "/(.*)",
       "destination": "/server.js"
     }
   ]
